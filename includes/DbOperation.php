@@ -20,20 +20,20 @@ class DbOperation
 	
 	
 	function getJogos(){
-		$stmt = $this->con->prepare("SELECT codJogo, imagem, nomeJogo, generoJogo, dataLanc, precoJogo FROM tbjogos");
+		$stmt = $this->con->prepare("SELECT codigo, imagem, descricao, quantidade, valor, data FROM tbprodutos");
 		$stmt->execute();
-		$stmt->bind_result($codJogo, $imagem, $nomeJogo, $generoJogo, $dataLanc, $precoJogo);
+		$stmt->bind_result($codigo, $imagem, $descricao, $quantidade, $valor, $data);
 		
 		$produtos = array(); 
 		
 		while($stmt->fetch()){
 			$produto  = array();
-			$produto['codJogo'] = $codJogo; 
+			$produto['codigo'] = $codigo; 
 			$produto['imagem'] = $imagem; 
-			$produto['nomeJogo'] = $nomeJogo; 
-			$produto['generoJogo'] = $generoJogo; 
-			$produto['dataLanc'] = $dataLanc;
-			$produto['precoJogo'] = $precoJogo; 
+			$produto['descricao'] = $descricao; 
+			$produto['quantidade'] = $quantidade; 
+			$produto['valor'] = $valor;
+			$produto['data'] = $data; 
 			
 			array_push($produtos, $produto); 
 		}
